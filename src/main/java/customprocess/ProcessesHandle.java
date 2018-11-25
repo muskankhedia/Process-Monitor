@@ -5,10 +5,8 @@ import org.hyperic.sigar.Sigar;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
 
 public class ProcessesHandle {
@@ -24,12 +22,14 @@ public class ProcessesHandle {
     public String processDetailsAll;
     public String[] processDetailsArray;
     public List processDetailsArrayAll;
+    public List processDetailsArrayAllStringified;
 
     ProcessesHandle() {
         this.separator = "%%%";
         this.processCurrentTrimmed = new ArrayList<List<String>>();
         this.pidLists = new ArrayList<Integer>();
         processDetailsArrayAll = new ArrayList();
+        this.processDetailsArrayAllStringified = new ArrayList();
     }
 
     private void filterProcesses(String[] prs) throws IOException {
@@ -80,6 +80,64 @@ public class ProcessesHandle {
         this.filterProcesses(this.processCurrentArray);
     }
 
+    /**
+     * USE CASE EXAMPLE ( PID 13021 -> JAVA )
+     * Name:   java
+     * Umask:  0002
+     * State:  S (sleeping)
+     * Tgid:   13021
+     * Ngid:   0
+     * Pid:    13021
+     * PPid:   3638
+     * TracerPid:      0
+     * Uid:    1000    1000    1000    1000
+     * Gid:    1000    1000    1000    1000
+     * FDSize: 512
+     * Groups: 10 1000
+     * NStgid: 13021
+     * NSpid:  13021
+     * NSpgid: 1636
+     * NSsid:  1636
+     * VmPeak:  4266236 kB
+     * VmSize:  4266236 kB
+     * VmLck:         0 kB
+     * VmPin:         0 kB
+     * VmHWM:    152952 kB
+     * VmRSS:    151852 kB
+     * RssAnon:          132448 kB
+     * RssFile:           19364 kB
+     * RssShmem:             40 kB
+     * VmData:   354916 kB
+     * VmStk:       140 kB
+     * VmExe:         4 kB
+     * VmLib:     22492 kB
+     * VmPTE:       696 kB
+     * VmSwap:        0 kB
+     * HugetlbPages:          0 kB
+     * CoreDumping:    0
+     * Threads:        23
+     * SigQ:   1/47404
+     * SigPnd: 0000000000000000
+     * ShdPnd: 0000000000000000
+     * SigBlk: 0000000000000004
+     * SigIgn: 0000000000000000
+     * SigCgt: 2000000181005ccf
+     * CapInh: 0000000000000000
+     * CapPrm: 0000000000000000
+     * CapEff: 0000000000000000
+     * CapBnd: 0000003fffffffff
+     * CapAmb: 0000000000000000
+     * NoNewPrivs:     0
+     * Seccomp:        0
+     * Speculation_Store_Bypass:       thread vulnerable
+     * Cpus_allowed:   ff
+     * Cpus_allowed_list:      0-7
+     * Mems_allowed:   00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000000,00000001
+     * Mems_allowed_list:      0
+     * voluntary_ctxt_switches:        1
+     * nonvoluntary_ctxt_switches:     0
+     * */
+
     public void getProcessDetails_catProc(List<Integer> ps) throws IOException {
         int count=0;
         BufferedReader Br;
@@ -98,16 +156,16 @@ public class ProcessesHandle {
                 }
             } catch (Exception e) {;}
             this.processDetailsArray = this.processDetailsAll.split(this.separator);
-            this.processDetailsArrayAll.add(Arrays.toString(this.processDetailsAll.split(this.separator)));
+            this.processDetailsArrayAll.add(this.processDetailsAll.split(this.separator));
+            this.processDetailsArrayAllStringified.add(Arrays.toString(this.processDetailsAll.split(this.separator)));
             this.processDetailsAll = "";
         }
     }
 
     public void displayAllFunctionalities() {
-//        System.out.println(Arrays.toString(this.processCurrentArray));
         System.out.println(this.processCurrentTrimmed);
         System.out.println(this.pidLists);
-        System.out.println((this.processDetailsArrayAll));
+        System.out.println((this.processDetailsArrayAllStringified));
     }
 }
 
