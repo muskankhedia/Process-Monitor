@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e29c3868-17d3-49ef-afd2-d0df9cace7b0" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/src/main/java/customprocess/ProcessesHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customprocess/ProcessesHandle.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/customprocess/UnitChecks.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customprocess/UnitChecks.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -23,13 +22,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="1988" />
+          <entry key="java" value="2352" />
           <entry key="xml" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="1988" />
+          <entry key="JAVA" value="2352" />
           <entry key="XML" value="23" />
         </counts>
       </usages-collector>
@@ -50,8 +49,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/customprocess/ProcessesHandle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="173">
-              <caret line="19" column="52" lean-forward="true" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
+            <state relative-caret-position="-260">
+              <caret line="46" column="36" lean-forward="true" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#740#748#0" expanded="true" />
@@ -155,7 +154,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543145817001" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543148365419" />
     <property name="last_opened_file_path" value="$USER_HOME$/Setups/hyperic-sigar-1.6.4/sigar-bin/lib/log4j.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -273,8 +272,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/customprocess/ProcessesHandle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="173">
-          <caret line="19" column="52" lean-forward="true" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
+        <state relative-caret-position="-260">
+          <caret line="46" column="36" lean-forward="true" selection-start-line="46" selection-start-column="36" selection-end-line="46" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#740#748#0" expanded="true" />

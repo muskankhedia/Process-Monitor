@@ -19,6 +19,9 @@ public class ProcessesHandle {
     public String[] processCurrentArray;
     public List<List<String>> processCurrentTrimmed;
     public List<Integer> pidLists;
+    private String processDetails;
+    public String processDetailsAll;
+    public String[] processDetailsArray;
 
     ProcessesHandle() {
         this.separator = "%%%";
@@ -26,7 +29,7 @@ public class ProcessesHandle {
         this.pidLists = new ArrayList<Integer>();
     }
 
-    private void filterProcesses(String[] prs) {
+    private void filterProcesses(String[] prs) throws IOException {
         System.out.println(prs);
         for (int i =0; i< prs.length; i++) {
             String[] one = prs[i].trim().split(" ");
@@ -40,15 +43,14 @@ public class ProcessesHandle {
                     } else if (count==2 && i==0) {
                         pidLists.add(1);
                     }
-                } catch (Exception n) {
-                    ;
-                }
+                } catch (Exception n) {;}
                 String a = j.trim();
-                if (!a.isEmpty())
-                pure.add(a);
+                if (!a.trim().equals(""))
+                    pure.add(a);
             }
             this.processCurrentTrimmed.add(pure);
         }
+        this.getProcessDetails_catProc(this.pidLists);
     }
 
 
@@ -63,7 +65,7 @@ public class ProcessesHandle {
         try {
             while (true) {
                 this.processLine = br.readLine();
-                if (this.processLine.isEmpty()) {
+                if (this.processLine.trim().equals("")) {
                     break;
                 }
                 this.processLineAll += this.processLine + this.separator;
@@ -74,12 +76,26 @@ public class ProcessesHandle {
         this.processCurrentArray = this.processLineAll.split(separator);
         this.filterProcesses(this.processCurrentArray);
     }
-    public void getProcessDetails_catProc(String[][] ps) {
-        int count=0;
-        for (String[] a: ps) {
-            if (count==0) {
 
-            }
+    public void getProcessDetails_catProc(List<Integer> ps) throws IOException {
+        int count=0;
+        BufferedReader Br;
+        for (int pid: ps) {
+            ProcessBuilder prr = new ProcessBuilder("cat", "/proc/"+String.valueOf(pid)+"/status");
+            Process prrRun = prr.start();
+            Br = new BufferedReader(new InputStreamReader(prrRun.getInputStream()));
+            try {
+                while (true) {
+                    this.processLine = Br.readLine();
+                    if (this.processLine.trim().equals("")) {
+                        break;
+                    }
+                    this.processDetailsAll += this.processLine + this.separator;
+                }
+            } catch (Exception e) {;}
+            this.processDetailsArray = this.processDetailsAll.split(this.separator);
+            System.out.println(Arrays.toString(this.processDetailsAll.split(this.separator)));
+            System.out.println(++count);
         }
     }
 
