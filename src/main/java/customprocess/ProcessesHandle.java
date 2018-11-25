@@ -5,6 +5,7 @@ import org.hyperic.sigar.Sigar;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
@@ -22,11 +23,13 @@ public class ProcessesHandle {
     private String processDetails;
     public String processDetailsAll;
     public String[] processDetailsArray;
+    public List processDetailsArrayAll;
 
     ProcessesHandle() {
         this.separator = "%%%";
         this.processCurrentTrimmed = new ArrayList<List<String>>();
         this.pidLists = new ArrayList<Integer>();
+        processDetailsArrayAll = new ArrayList();
     }
 
     private void filterProcesses(String[] prs) throws IOException {
@@ -90,12 +93,13 @@ public class ProcessesHandle {
                     if (this.processLine.trim().equals("")) {
                         break;
                     }
-                    this.processDetailsAll += this.processLine + this.separator;
+                    this.processDetailsAll += this.processLine.replaceAll(",", "|") + this.separator;
+
                 }
             } catch (Exception e) {;}
             this.processDetailsArray = this.processDetailsAll.split(this.separator);
-            System.out.println(Arrays.toString(this.processDetailsAll.split(this.separator)));
-            System.out.println(++count);
+            this.processDetailsArrayAll.add(Arrays.toString(this.processDetailsAll.split(this.separator)));
+            this.processDetailsAll = "";
         }
     }
 
@@ -103,6 +107,7 @@ public class ProcessesHandle {
 //        System.out.println(Arrays.toString(this.processCurrentArray));
         System.out.println(this.processCurrentTrimmed);
         System.out.println(this.pidLists);
+        System.out.println((this.processDetailsArrayAll));
     }
 }
 
