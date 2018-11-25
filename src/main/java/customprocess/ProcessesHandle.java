@@ -11,15 +11,14 @@ import java.util.List;
 
 public class ProcessesHandle {
 
-    public Sigar sigarObs;
-    public String processLine;
-    public String processLineAll;
+    private Sigar sigarObs;
+    private String processLine;
+    private String processLineAll;
     private String separator;
     public String[] processCurrentArray;
     public List<List<String>> processCurrentTrimmed;
     public List<Integer> pidLists;
     private String processDetails;
-    public String processDetailsAll;
     public String[] processDetailsArray;
     public List processDetailsArrayAll;
     public List processDetailsArrayAllStringified;
@@ -166,6 +165,10 @@ public class ProcessesHandle {
         System.out.println(this.processCurrentTrimmed);
         System.out.println(this.pidLists);
         System.out.println((this.processDetailsArrayAllStringified));
+    }
+
+    public void runFunctionalities() throws IOException, NullPointerException, NumberFormatException {
+        this.getAllCurrentProcesses();
     }
 }
 
