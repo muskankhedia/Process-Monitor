@@ -18,9 +18,12 @@ public class ProcessesHandle {
     private String separator;
     public String[] processCurrentArray;
     public List<List<String>> processCurrentTrimmed;
+    public List<Integer> pidLists;
+
     ProcessesHandle() {
         this.separator = "%%%";
         this.processCurrentTrimmed = new ArrayList<List<String>>();
+        this.pidLists = new ArrayList<Integer>();
     }
 
     private void filterProcesses(String[] prs) {
@@ -28,7 +31,18 @@ public class ProcessesHandle {
         for (int i =0; i< prs.length; i++) {
             String[] one = prs[i].trim().split(" ");
             List<String> pure = new ArrayList<String>();
+            int count=0;
             for (String j: one) {
+                ++count;
+                try {
+                    if (count==1 && i!=0) {
+                        pidLists.add(Integer.parseInt(j.trim()));
+                    } else if (count==2 && i==0) {
+                        pidLists.add(1);
+                    }
+                } catch (Exception n) {
+                    ;
+                }
                 String a = j.trim();
                 if (!a.isEmpty())
                 pure.add(a);
@@ -36,6 +50,7 @@ public class ProcessesHandle {
             this.processCurrentTrimmed.add(pure);
         }
     }
+
 
     public void getAllCurrentProcesses() throws IOException, NullPointerException {
         // get all running process in batch mode in single iteration
@@ -51,7 +66,6 @@ public class ProcessesHandle {
                 if (this.processLine.isEmpty()) {
                     break;
                 }
-                System.out.println(this.processLine);
                 this.processLineAll += this.processLine + this.separator;
             }
         } catch (NullPointerException e) {
@@ -60,10 +74,19 @@ public class ProcessesHandle {
         this.processCurrentArray = this.processLineAll.split(separator);
         this.filterProcesses(this.processCurrentArray);
     }
+    public void getProcessDetails_catProc(String[][] ps) {
+        int count=0;
+        for (String[] a: ps) {
+            if (count==0) {
+
+            }
+        }
+    }
 
     public void displayAllFunctionalities() {
 //        System.out.println(Arrays.toString(this.processCurrentArray));
         System.out.println(this.processCurrentTrimmed);
+        System.out.println(this.pidLists);
     }
 }
 
