@@ -5,9 +5,7 @@ import org.hyperic.sigar.Sigar;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class ProcessesHandle {
 
@@ -21,7 +19,9 @@ public class ProcessesHandle {
     private String processDetails;
     public String[] processDetailsArray;
     public List processDetailsArrayAll;
+    private String processDetailsAll;
     public List processDetailsArrayAllStringified;
+    public List<Map<String, String>> psDetailMap;
 
     ProcessesHandle() {
         this.separator = "%%%";
@@ -29,10 +29,10 @@ public class ProcessesHandle {
         this.pidLists = new ArrayList<Integer>();
         processDetailsArrayAll = new ArrayList();
         this.processDetailsArrayAllStringified = new ArrayList();
+        this.psDetailMap = new ArrayList<Map<String, String>>();
     }
 
     private void filterProcesses(String[] prs) throws IOException {
-        System.out.println(prs);
         for (int i =0; i< prs.length; i++) {
             String[] one = prs[i].trim().split(" ");
             List<String> pure = new ArrayList<String>();
@@ -137,8 +137,7 @@ public class ProcessesHandle {
      * nonvoluntary_ctxt_switches:     0
      * */
 
-    public void getProcessDetails_catProc(List<Integer> ps) throws IOException {
-        int count=0;
+    public List<Map<String, String>> getProcessDetails_catProc(List<Integer> ps) throws IOException {
         BufferedReader Br;
         for (int pid: ps) {
             ProcessBuilder prr = new ProcessBuilder("cat", "/proc/"+String.valueOf(pid)+"/status");
@@ -155,16 +154,32 @@ public class ProcessesHandle {
                 }
             } catch (Exception e) {;}
             this.processDetailsArray = this.processDetailsAll.split(this.separator);
-            this.processDetailsArrayAll.add(this.processDetailsAll.split(this.separator));
-            this.processDetailsArrayAllStringified.add(Arrays.toString(this.processDetailsAll.split(this.separator)));
+            this.processDetailsArrayAll.add(this.processDetailsArray);
+            this.processDetailsArrayAllStringified.add(Arrays.toString(this.processDetailsArray));
             this.processDetailsAll = "";
+            this.psDetailMap.add(this.detailsToMaps(this.processDetailsArray));
         }
+        return this.psDetailMap;
+    }
+    private Map<String,String> detailsToMaps(String[] d) {
+        Map<String, String> processDetails = new LinkedHashMap<String, String>();
+        for (String x: d) {
+            x.replaceAll(":", "%%%");
+            try {
+                processDetails.put(x.split(":")[0], x.split(":")[1].trim());
+            } catch (ArrayIndexOutOfBoundsException e) {
+                processDetails.put(x.split(":")[0], "");
+            }
+        }
+        return processDetails;
+
     }
 
     public void displayAllFunctionalities() {
-        System.out.println(this.processCurrentTrimmed);
-        System.out.println(this.pidLists);
-        System.out.println((this.processDetailsArrayAllStringified));
+//        System.out.println(this.processCurrentTrimmed);
+//        System.out.println(this.pidLists);
+        System.out.println("display function");
+        System.out.println(this.psDetailMap);
     }
 
     public void runFunctionalities() throws IOException, NullPointerException, NumberFormatException {
