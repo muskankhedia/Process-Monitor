@@ -7,6 +7,7 @@ import org.hyperic.sigar.SigarException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class NetworkHandle {
     private Sigar sigar;
@@ -15,7 +16,7 @@ public class NetworkHandle {
     private List<String> networkCardsList;
     private List<Object> networkStatsList;
     private long networkSpeed;
-    private List<Long> networkSpeedList;
+    private Map<String, Long> networkSpeedListCollection;
 
     NetworkHandle() {
         this.sigar = new Sigar();
@@ -41,11 +42,11 @@ public class NetworkHandle {
         return this.sigar.getNetInterfaceStat(cardName).getSpeed();
     }
 
-    public List<Long> getAllNetworkSpeeds() throws SigarException {
+    public Map<String, Long> getAllNetworkSpeeds() throws SigarException {
         for (String name: this.sigar.getNetInterfaceList()) {
-            this.networkSpeedList.add(this.sigar.getNetInterfaceStat(name).getSpeed());
+            this.networkSpeedListCollection.put(name, this.sigar.getNetInterfaceStat(name).getSpeed());
         }
-        return this.networkSpeedList;
+        return this.networkSpeedListCollection;
     }
 
 
