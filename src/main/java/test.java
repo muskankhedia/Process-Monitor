@@ -49,29 +49,21 @@ public class test {
 
     }
 
-    public static void main(String[] args) throws IOException, SigarException {
-        ProcessBuilder p = new ProcessBuilder("netstat","-l","-p");
-//        Process proc = p.start();
-//        BufferedReader br = new BufferedReader(new InputStreamReader(proc.getInputStream()));
-        String line="";Boolean exit = false;
-//        while (true) {
-//            try {
-//                line = br.readLine();
-//                System.out.println(line);
-//            } catch (NullPointerException e) {
-//                System.out.println("done");
-//                exit=true;
-//            }
-//            if (exit)
-//                break;
-//            if (line==null)
-//                break;
-//        }
-//        networksIntSigar();
-        installer();
-        Sigar sigar = new Sigar();
 
-        System.out.println(Arrays.toString(sigar.getProcArgs("12990")));
-        sigar
+
+    public static void main(String[] args) throws IOException, SigarException {
+        ProcessBuilder p = new ProcessBuilder("sudo","nethogs", "-t");
+        Process pcc = p.start();
+        Sigar sigar = new Sigar();
+        BufferedReader br = new BufferedReader(new InputStreamReader(pcc.getInputStream()));
+        String ll = "";
+        while (true) {
+            ll = br.readLine();
+            System.out.println(ll);
+            System.out.println(pcc.getOutputStream());
+            if (ll==null)
+                break;
+        }
+
     }
 }
