@@ -24,13 +24,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="8183" />
+          <entry key="java" value="8225" />
           <entry key="xml" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="8183" />
+          <entry key="JAVA" value="8225" />
           <entry key="XML" value="23" />
         </counts>
       </usages-collector>
@@ -51,14 +51,18 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/customprocess/NetworkHandle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="118">
-              <caret line="90" column="48" lean-forward="true" selection-start-line="90" selection-start-column="48" selection-end-line="90" selection-end-column="48" />
+            <state relative-caret-position="234">
+              <caret line="146" column="63" lean-forward="true" selection-start-line="146" selection-start-column="63" selection-end-line="146" selection-end-column="63" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2641#2649#0" expanded="true" />
                 <element signature="e#3053#3061#0" expanded="true" />
                 <element signature="e#2890#2906#0" expanded="true" />
                 <element signature="e#3087#3095#0" expanded="true" />
+                <element signature="e#5025#5033#0" expanded="true" />
+                <element signature="e#5544#5552#0" expanded="true" />
+                <element signature="e#5685#5701#0" expanded="true" />
+                <element signature="e#5840#5848#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -189,7 +193,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543262944977" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543263410551" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -314,6 +318,20 @@
           <properties />
           <option name="timeStamp" value="6" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/customprocess/NetworkHandle.java</url>
+          <line>52</line>
+          <properties />
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/customprocess/NetworkHandle.java</url>
+          <line>51</line>
+          <properties class="customprocess.NetworkHandle" method="netstatPID">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
@@ -369,14 +387,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/customprocess/NetworkHandle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="118">
-          <caret line="90" column="48" lean-forward="true" selection-start-line="90" selection-start-column="48" selection-end-line="90" selection-end-column="48" />
+        <state relative-caret-position="234">
+          <caret line="146" column="63" lean-forward="true" selection-start-line="146" selection-start-column="63" selection-end-line="146" selection-end-column="63" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2641#2649#0" expanded="true" />
             <element signature="e#3053#3061#0" expanded="true" />
             <element signature="e#2890#2906#0" expanded="true" />
             <element signature="e#3087#3095#0" expanded="true" />
+            <element signature="e#5025#5033#0" expanded="true" />
+            <element signature="e#5544#5552#0" expanded="true" />
+            <element signature="e#5685#5701#0" expanded="true" />
+            <element signature="e#5840#5848#0" expanded="true" />
           </folding>
         </state>
       </provider>
