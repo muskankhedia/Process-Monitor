@@ -49,11 +49,12 @@ public class NetworkHandle {
         return this.networkSpeedListCollection;
     }
 
-    public void netstatPID(String pid) throws IOException {
-        Process netstats = Runtime.getRuntime().exec("netstat -tanp | grep "+Integer.parseInt(pid));
+    public List<Object> netstatPID(String pid) throws IOException {
+        Process netstats = Runtime.getRuntime().exec("netstat -tanp | grep "+(pid));
         Scanner SS = new Scanner(netstats.getInputStream());
         System.out.println("from netstatas");
-        String line="", sentence="";Boolean exit=false;
+        String line="", sentence="";
+        Boolean exit=false;
         while (true) {
             try {
                 line = SS.nextLine();
@@ -77,6 +78,8 @@ public class NetworkHandle {
         }
         System.out.println("Headings below");
         System.out.println(headings);
+        System.out.println(aa.length);
+        List<Object> processObjects = new ArrayList<Object>();
         for (int j=2; j< aa.length; j++){ // first two being the headings
             Map<String, String> abc = new LinkedHashMap<String, String>();
             String[] b = aa[j].split(" ");
@@ -84,22 +87,23 @@ public class NetworkHandle {
             List<String> b_filtered = new ArrayList<String>();
             int count = 0;
             for (int x=0;x< b.length; x++) {
-                if (!b[x].trim().equals(""))
+                if (!b[x].trim().equals("") && x!=(b.length-1))
                     b_filtered.add(b[x].trim());
+                else if (x==(b.length-1))
+                    if (!b[x].startsWith(pid))
+                        b_filtered.add("%%%removethis%%%");
+                    else
+                        b_filtered.add(b[x].trim());
             }
-            if (b_filtered.size()==headings.size()) {
+            if (b_filtered.size()==headings.size())
                 for (int k = 0; k < b_filtered.size(); k++)
                     abc.put(headings.get(k).trim(), b_filtered.get(k).trim());
-                System.out.println("perfect below");
-                System.out.println(abc);
-            }
-            else {
-//                System.out.println(b_filtered);
-//                System.out.println(b_filtered.size()+" "+headings.size());
+            else
                 System.err.println("Size incompatible");
-//                System.exit(1);
-            }
+            if (!(abc.get("PID/Program name")=="%%%removethis%%%"))
+                processObjects.add(abc);
         }
+        return processObjects;
     }
 
     public void runFunctionalities() throws SigarException {
@@ -108,6 +112,6 @@ public class NetworkHandle {
     }
 
     public static void main(String[] args) throws IOException {
-        new NetworkHandle().netstatPID(Integer.toString(2059));
+        System.out.print(new NetworkHandle().netstatPID(Integer.toString(2059)));
     }
 }
