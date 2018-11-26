@@ -69,20 +69,37 @@ public class NetworkHandle {
         String[] headers = aa[1].split(" ");
         // making list of it
         List<String> headings = new ArrayList<String>();
-        for (String n: headers) {
-            if (!n.trim().equals(""))
-                headings.add(n);
+        for (int n=0;n< headers.length; n++) {
+            if (!headers[n].trim().equals("") && !(n==3 || n ==15 || n==32) && !(n==4 || n==16 || n==33))
+                headings.add(headers[n].trim());
+            else if ((n==3|| n==15 || n == 32))
+                headings.add(headers[n].trim()+" "+headers[n+1].trim());
         }
         System.out.println("Headings below");
         System.out.println(headings);
-//        for (int j=2; j< aa.length; j++){ // first two being the headings
-//            Map<String, String> abc = new LinkedHashMap<String, String>();
-//            String[] b = aa[j].split(" ");
-//            for (int k=0; k< b.length; k++) {
-//                abc.put("Proto", b[k].trim());
-//
-//            }
-//        }
+        for (int j=2; j< aa.length; j++){ // first two being the headings
+            Map<String, String> abc = new LinkedHashMap<String, String>();
+            String[] b = aa[j].split(" ");
+            // filter empty cells from b
+            List<String> b_filtered = new ArrayList<String>();
+            int count = 0;
+            for (int x=0;x< b.length; x++) {
+                if (!b[x].trim().equals(""))
+                    b_filtered.add(b[x].trim());
+            }
+            if (b_filtered.size()==headings.size()) {
+                for (int k = 0; k < b_filtered.size(); k++)
+                    abc.put(headings.get(k).trim(), b_filtered.get(k).trim());
+                System.out.println("perfect below");
+                System.out.println(abc);
+            }
+            else {
+//                System.out.println(b_filtered);
+//                System.out.println(b_filtered.size()+" "+headings.size());
+                System.err.println("Size incompatible");
+//                System.exit(1);
+            }
+        }
     }
 
     public void runFunctionalities() throws SigarException {
