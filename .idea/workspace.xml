@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e29c3868-17d3-49ef-afd2-d0df9cace7b0" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/customprocess/NetworkHandle.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/customprocess/NetworkHandle.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -24,13 +24,13 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="8225" />
+          <entry key="java" value="8303" />
           <entry key="xml" value="23" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="8225" />
+          <entry key="JAVA" value="8303" />
           <entry key="XML" value="23" />
         </counts>
       </usages-collector>
@@ -48,11 +48,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/customprocess/NetworkHandle.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="146" column="63" lean-forward="true" selection-start-line="146" selection-start-column="63" selection-end-line="146" selection-end-column="63" />
+            <state relative-caret-position="328">
+              <caret line="151" lean-forward="true" selection-start-line="151" selection-end-line="151" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#2641#2649#0" expanded="true" />
@@ -68,11 +68,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/test.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="388">
-              <caret line="51" selection-start-line="51" selection-end-line="51" />
+            <state relative-caret-position="148">
+              <caret line="56" column="59" lean-forward="true" selection-start-line="56" selection-start-column="59" selection-end-line="56" selection-end-column="59" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -116,8 +116,8 @@
         <option value="$PROJECT_DIR$/src/main/java/Core.java" />
         <option value="$PROJECT_DIR$/src/main/java/customprocess/UnitChecks.java" />
         <option value="$PROJECT_DIR$/src/main/java/customprocess/ProcessesHandle.java" />
-        <option value="$PROJECT_DIR$/src/main/java/test.java" />
         <option value="$PROJECT_DIR$/src/main/java/customprocess/NetworkHandle.java" />
+        <option value="$PROJECT_DIR$/src/main/java/test.java" />
       </list>
     </option>
   </component>
@@ -193,7 +193,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543263410551" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1543265373469" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -212,7 +212,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Application.NetworkHandle">
+  <component name="RunManager" selected="Application.test">
     <configuration name="NetworkHandle" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="customprocess.NetworkHandle" />
       <module name="processmonitor" />
@@ -253,8 +253,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.NetworkHandle" />
         <item itemvalue="Application.test" />
+        <item itemvalue="Application.NetworkHandle" />
         <item itemvalue="Application.UnitChecks" />
       </list>
     </recent_temporary>
@@ -286,7 +286,7 @@
       <window_info id="Favorites" order="7" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.46270928" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.46270928" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.47488585" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -375,20 +375,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/test.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="388">
-          <caret line="51" selection-start-line="51" selection-end-line="51" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/customprocess/NetworkHandle.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="146" column="63" lean-forward="true" selection-start-line="146" selection-start-column="63" selection-end-line="146" selection-end-column="63" />
+        <state relative-caret-position="328">
+          <caret line="151" lean-forward="true" selection-start-line="151" selection-end-line="151" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#2641#2649#0" expanded="true" />
@@ -399,6 +389,16 @@
             <element signature="e#5544#5552#0" expanded="true" />
             <element signature="e#5685#5701#0" expanded="true" />
             <element signature="e#5840#5848#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/test.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="56" column="59" lean-forward="true" selection-start-line="56" selection-start-column="59" selection-end-line="56" selection-end-column="59" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>

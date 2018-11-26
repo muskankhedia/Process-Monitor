@@ -49,18 +49,22 @@ public class test {
 
     }
 
-
-
     public static void main(String[] args) throws IOException, SigarException {
-        ProcessBuilder p = new ProcessBuilder("sudo","nethogs", "-t");
-        Process pcc = p.start();
+        String pass = "hsinghbb";
+//        ProcessBuilder p = new ProcessBuilder("echo","hsinghbb","|","sudo","-S","nethogs", "-t");
+        /**
+         * disable root permissions in nethogs, type the following
+         * sudo setcap "cap_net_admin,cap_net_raw=ep" /usr/sbin/nethogs
+          */
+
+        Process pcc = Runtime.getRuntime().exec("nethogs -t");
+//        Process pcc = p.start();
         Sigar sigar = new Sigar();
         BufferedReader br = new BufferedReader(new InputStreamReader(pcc.getInputStream()));
         String ll = "";
         while (true) {
             ll = br.readLine();
             System.out.println(ll);
-            System.out.println(pcc.getOutputStream());
             if (ll==null)
                 break;
         }

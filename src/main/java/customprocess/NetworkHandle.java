@@ -5,7 +5,9 @@ import org.hyperic.sigar.NetInterfaceStat;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.*;
 
 public class NetworkHandle {
@@ -149,7 +151,21 @@ public class NetworkHandle {
         return processObjects;
     }
 
-
+    public void networkActivityMonitoring() throws IOException {
+        /**
+         * disable root permissions in nethogs, type the following
+         * sudo setcap "cap_net_admin,cap_net_raw=ep" /usr/sbin/nethogs
+         */
+        Process pcc = Runtime.getRuntime().exec("nethogs -t");
+        BufferedReader br = new BufferedReader(new InputStreamReader(pcc.getInputStream()));
+        String ll = "";
+        while (true) {
+            ll = br.readLine();
+            System.out.println(ll);
+            if (ll==null)
+                break;
+        }
+    }
 
     public void runFunctionalities() throws SigarException {
         this.getNetworkCards();
