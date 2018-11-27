@@ -156,15 +156,20 @@ public class NetworkHandle {
          * disable root permissions in nethogs, type the following
          * sudo setcap "cap_net_admin,cap_net_raw=ep" /usr/sbin/nethogs
          */
-        Process pcc = Runtime.getRuntime().exec("nethogs -t");
+        final Process pcc = Runtime.getRuntime().exec("nethogs -t");
         BufferedReader br = new BufferedReader(new InputStreamReader(pcc.getInputStream()));
         String ll = "";
+        Timer timer = new Timer();
+        int c=10100;
         while (true) {
             ll = br.readLine();
             System.out.println(ll);
+            System.out.println(++c);
             if (ll==null)
                 break;
+
         }
+        pcc.destroy();
     }
 
     public void runFunctionalities() throws SigarException {

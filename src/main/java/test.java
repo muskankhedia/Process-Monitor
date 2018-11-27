@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.Scanner;
+import java.util.*;
 
 public class test {
 
@@ -57,16 +58,23 @@ public class test {
          * sudo setcap "cap_net_admin,cap_net_raw=ep" /usr/sbin/nethogs
           */
 
-        Process pcc = Runtime.getRuntime().exec("nethogs -t");
+        final Process pcc = Runtime.getRuntime().exec("nethogs -t");
 //        Process pcc = p.start();
         Sigar sigar = new Sigar();
         BufferedReader br = new BufferedReader(new InputStreamReader(pcc.getInputStream()));
-        String ll = "";
+        String ll = "";Boolean exit = false;
+        Timer timer = new Timer();
         while (true) {
             ll = br.readLine();
             System.out.println(ll);
             if (ll==null)
-                break;
+                return;
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    pcc.destroy();
+                }
+            }, 5*1000);
         }
 
     }
