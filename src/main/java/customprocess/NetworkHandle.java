@@ -153,87 +153,131 @@ public class NetworkHandle {
         return processObjects;
     }
 
-    public void networkActivityMonitoring() throws IOException {
-        /**
-         * disable root permissions in nethogs, type the following
-         * sudo setcap "cap_net_admin,cap_net_raw=ep" /usr/sbin/nethogs
-         */
-        final Process pcc = Runtime.getRuntime().exec("nethogs -t");
-        BufferedReader br = new BufferedReader(new InputStreamReader(pcc.getInputStream()));
-        String ll = "", sentence="";
-        String aa[];
-        Timer timer = new Timer();
-        boolean exit = false;
-        int c=10100;
-        ll = br.readLine();
-        if(ll == null){
-            System.out.println("Hii");
-        }
-        else{
-            while (true) {
-                ll = br.readLine().trim();
-                System.out.println(ll);
-                sentence += ll + this.separator;
-                aa= sentence.split("%%%%%%");
-                if(aa.length >= 2){
-                    sentence ="";
-                    while(true){
-                        ll = br.readLine();
-                        sentence += ll + this.separator;
-                        aa = sentence.split("%%%%%%");
-                        if(aa.length >= 2) break;
-                        else{
-
-                        }
-                    }
-                }
-                while(ll == "Refreshing"){
-                    ll = br.readLine().trim();
-                    System.out.println(ll);
-
-                    if(ll.equals("")){
-                        break;
-                    }
-                    else{
-                        sentence += ll + this.separator;
-                        System.out.println(sentence);
-                    }
-
-                }
-//                sentence += ll + this.separator;
-//                String[] aa = sentence.split("%%%%%%");
-//                if (aa.length == 10)
-//                    break;
-
-//                System.out.println(sentence);
-//                List<Object> processObjects = new ArrayList<Object>();
-//                String[] newProcess = sentence.split("%%%%%%");
-//                String headers[] = {"Program", "Sent", "Received"};
-//                for (int i = 1; i < newProcess.length; i++) {
-//                    Map<String, String> line = new LinkedHashMap<String, String>();
-//                    String[] b_process = newProcess[i].split("%%%");
-//                    for (int j = 1; j < b_process.length; j++) {
-//                        String[] c_process = b_process[j].split("\t");
-//                        if (c_process.length == 3)
-//                            for (int k = 0; k < 3; k++)
-//                                line.put(headers[k].trim(), c_process[k].trim());
-//                        processObjects.add(line);
-//                        System.out.println(processObjects);
+//    public void networkActivityMonitoring() throws IOException {
+//        /**
+//         * disable root permissions in nethogs, type the following
+//         * sudo setcap "cap_net_admin,cap_net_raw=ep" /usr/sbin/nethogs
+//         */
+//        final Process pcc = Runtime.getRuntime().exec("nethogs -t");
+//        BufferedReader br = new BufferedReader(new InputStreamReader(pcc.getInputStream()));
+//        String ll = "", sentence="";
+//        String aa[];
+//        Timer timer = new Timer();
+//        boolean exit = false;
+//        int c=10100;
+//        ll = br.readLine();
+//        String headers[] = {"Program", "Sent", "Received"};
+//        List<Object> processObjects = new ArrayList<Object>();
+//        if(ll == null){
+//            System.out.println("Hii");
+//        }
+//        else {
+////            while (true) {
+////                ll = br.readLine().trim();
+////                sentence = ll;
+////                System.out.print(sentence);
+////                if(sentence.equals("Refreshing:")){
+////                    System.out.println("asdsf");
+////                }
+////                aa = sentence.split("%%%%%%");
+////                if (aa.length >= 2) {
+////                    sentence = "";
+////                    while (true) {
+////                        ll = br.readLine();
+////                        sentence += ll + this.separator;
+////                        aa = sentence.split("%%%%%%");
+////                        if (aa.length >= 2) {
+////                            Map<String, String> line = new LinkedHashMap<String, String>();
+////                            String[] b_process = aa[0].split("%%%");
+////                            for (int j = 1; j < b_process.length; j++) {
+////                                String[] c_process = b_process[j].split("\t");
+////                                if (c_process.length == 3)
+////                                    for (int k = 0; k < 3; k++)
+////                                        line.put(headers[k].trim(), c_process[k].trim());
+////                                processObjects.add(line);
+////                                System.out.println(processObjects);
+////                                break;
+////                            }
+////
+////                        }
+////                    }
+//                while(ll == "Refreshing:"){
+//                    ll = br.readLine().trim();
+//                    System.out.println(ll);
+//
+//                    if(ll.equals("")){
+//                        break;
 //                    }
-//                    //System.out.println(processObjects);
+//                    else{
+//                        sentence += ll + this.separator;
+//                        System.out.println(sentence);
+//                    }
 //
 //                }
+////                sentence += ll + this.separator;
+////                String[] aa = sentence.split("%%%%%%");
+////                if (aa.length == 10)
+////                    break;
+//
+////                System.out.println(sentence);
+////                List<Object> processObjects = new ArrayList<Object>();
+////                String[] newProcess = sentence.split("%%%%%%");
+////                String headers[] = {"Program", "Sent", "Received"};
+////                for (int i = 1; i < newProcess.length; i++) {
+////                    Map<String, String> line = new LinkedHashMap<String, String>();
+////                    String[] b_process = newProcess[i].split("%%%");
+////                    for (int j = 1; j < b_process.length; j++) {
+////                        String[] c_process = b_process[j].split("\t");
+////                        if (c_process.length == 3)
+////                            for (int k = 0; k < 3; k++)
+////                                line.put(headers[k].trim(), c_process[k].trim());
+////                        processObjects.add(line);
+////                        System.out.println(processObjects);
+////                    }
+////                    //System.out.println(processObjects);
+////
+////                }
+//                }
+//            }
+//
+////        System.out.println(processObjects);
+//        }
+//        pcc.destroy();
+//    }
+
+    public void networkActivityMonitoring() throws IOException{
+        final Process pcc = Runtime.getRuntime().exec("nethogs -t");
+        BufferedReader br = new BufferedReader(new InputStreamReader(pcc.getInputStream()));
+        String ll = "", sentence="", next="";
+        String headers[] = {"Program", "Sent", "Received"};
+        ll = br.readLine();
+        List<Object> processObjects = new ArrayList<Object>();
+        Map<String, String> line = new LinkedHashMap<String, String>();
+        if(ll == null){
+            System.out.println("No internet Connection");
+        }
+        else{
+            while(true){
+                ll = br.readLine();
+                if(ll.equals("Refreshing:")) {
+                    while(true){
+                        ll = br.readLine();
+                        if(ll.equals("")) {
+                            break;
+                        }
+                        sentence = ll;
+                        String[] process_details = sentence.split("\t");
+                        if (process_details.length == 3)
+                            for (int k = 0; k < 3; k++)
+                                line.put(headers[k].trim(), process_details[k].trim());
+                        processObjects.add(line);
+                        System.out.println(processObjects);
+                    }
+                }
             }
         }
-
-//        System.out.println(processObjects);
-
-        pcc.destroy();
     }
 
-    public static void store(){
-
-    }
 
     public void runFunctionalities() throws SigarException {
         this.getNetworkCards();
