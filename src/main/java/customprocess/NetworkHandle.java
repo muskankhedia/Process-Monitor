@@ -28,12 +28,14 @@ public class NetworkHandle {
     public List<String> getNetworkCards() throws SigarException {
         for (String name: this.sigar.getNetInterfaceList()) {
             this.networkCardsList.add(name);
+            System.out.println("X");
         }
         return this.networkCardsList;
     }
 
     public List<Object> getNetworkCardsStats() throws SigarException {
         for (String name: this.sigar.getNetInterfaceList()) {
+
             this.networkStatsList.add(this.sigar.getNetInterfaceStat(name));
         }
         return this.networkStatsList;
@@ -158,18 +160,79 @@ public class NetworkHandle {
          */
         final Process pcc = Runtime.getRuntime().exec("nethogs -t");
         BufferedReader br = new BufferedReader(new InputStreamReader(pcc.getInputStream()));
-        String ll = "";
+        String ll = "", sentence="";
+        String aa[];
         Timer timer = new Timer();
+        boolean exit = false;
         int c=10100;
-        while (true) {
-            ll = br.readLine();
-            System.out.println(ll);
-            System.out.println(++c);
-            if (ll==null)
-                break;
-
+        ll = br.readLine();
+        if(ll == null){
+            System.out.println("Hii");
         }
+        else{
+            while (true) {
+                ll = br.readLine().trim();
+                System.out.println(ll);
+                sentence += ll + this.separator;
+                aa= sentence.split("%%%%%%");
+                if(aa.length >= 2){
+                    sentence ="";
+                    while(true){
+                        ll = br.readLine();
+                        sentence += ll + this.separator;
+                        aa = sentence.split("%%%%%%");
+                        if(aa.length >= 2) break;
+                        else{
+
+                        }
+                    }
+                }
+                while(ll == "Refreshing"){
+                    ll = br.readLine().trim();
+                    System.out.println(ll);
+
+                    if(ll.equals("")){
+                        break;
+                    }
+                    else{
+                        sentence += ll + this.separator;
+                        System.out.println(sentence);
+                    }
+
+                }
+//                sentence += ll + this.separator;
+//                String[] aa = sentence.split("%%%%%%");
+//                if (aa.length == 10)
+//                    break;
+
+//                System.out.println(sentence);
+//                List<Object> processObjects = new ArrayList<Object>();
+//                String[] newProcess = sentence.split("%%%%%%");
+//                String headers[] = {"Program", "Sent", "Received"};
+//                for (int i = 1; i < newProcess.length; i++) {
+//                    Map<String, String> line = new LinkedHashMap<String, String>();
+//                    String[] b_process = newProcess[i].split("%%%");
+//                    for (int j = 1; j < b_process.length; j++) {
+//                        String[] c_process = b_process[j].split("\t");
+//                        if (c_process.length == 3)
+//                            for (int k = 0; k < 3; k++)
+//                                line.put(headers[k].trim(), c_process[k].trim());
+//                        processObjects.add(line);
+//                        System.out.println(processObjects);
+//                    }
+//                    //System.out.println(processObjects);
+//
+//                }
+            }
+        }
+
+//        System.out.println(processObjects);
+
         pcc.destroy();
+    }
+
+    public static void store(){
+
     }
 
     public void runFunctionalities() throws SigarException {
@@ -180,6 +243,8 @@ public class NetworkHandle {
 
 
     public static void main(String[] args) throws IOException {
-        System.out.print(new NetworkHandle().netstatALL());
+        System.out.println(new NetworkHandle().netstatALL());
+        NetworkHandle obj = new NetworkHandle();
+         obj.networkActivityMonitoring();
     }
 }

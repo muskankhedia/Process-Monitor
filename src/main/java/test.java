@@ -2,13 +2,9 @@ import org.hyperic.sigar.NetInterfaceStat;
 import org.hyperic.sigar.Sigar;
 import org.hyperic.sigar.SigarException;
 
-import javax.imageio.IIOException;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Scanner;
-import java.util.*;
 
 public class test {
 
@@ -50,32 +46,58 @@ public class test {
 
     }
 
-    public static void main(String[] args) throws IOException, SigarException {
-        String pass = "hsinghbb";
-//        ProcessBuilder p = new ProcessBuilder("echo","hsinghbb","|","sudo","-S","nethogs", "-t");
-        /**
-         * disable root permissions in nethogs, type the following
-         * sudo setcap "cap_net_admin,cap_net_raw=ep" /usr/sbin/nethogs
-          */
+//    public static void main(String[] args) throws IOException, SigarException {
+//        String pass = "hsinghbb";
+////        ProcessBuilder p = new ProcessBuilder("echo","hsinghbb","|","sudo","-S","nethogs", "-t");
+//        /**
+//         * disable root permissions in nethogs, type the following
+//         * sudo setcap "cap_net_admin,cap_net_raw=ep" /usr/sbin/nethogs
+//          */
+//
+//        final Process pcc = Runtime.getRuntime().exec("nethogs -t");
+////        Process pcc = p.start();
+//        Sigar sigar = new Sigar();
+//        BufferedReader br = new BufferedReader(new InputStreamReader(pcc.getInputStream()));
+//        String ll = "";Boolean exit = false;
+//        Timer timer = new Timer();
+//        while (true) {
+//            ll = br.readLine();
+//            System.out.println(ll);
+//            if (ll==null)
+//                return;
+//            timer.schedule(new TimerTask() {
+//                @Override
+//                public void run() {
+//                    pcc.destroy();
+//                }
+//            }, 5*1000);
+//        }
+//
+//    }
 
-        final Process pcc = Runtime.getRuntime().exec("nethogs -t");
-//        Process pcc = p.start();
-        Sigar sigar = new Sigar();
-        BufferedReader br = new BufferedReader(new InputStreamReader(pcc.getInputStream()));
-        String ll = "";Boolean exit = false;
-        Timer timer = new Timer();
-        while (true) {
-            ll = br.readLine();
-            System.out.println(ll);
-            if (ll==null)
-                return;
-            timer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    pcc.destroy();
+    public static void main(String[] args){
+        try {
+            Process p = new ProcessBuilder("git", "branch").start();
+            p.waitFor();
+            BufferedReader br = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            System.out.println(p.getInputStream());
+            String line = br.readLine();
+            System.out.println(line);
+            String branch = "";
+            while (line != null) {
+                if (!line.startsWith("*")) {
+                    line = br.readLine();
+                    break;
                 }
-            }, 5*1000);
-        }
+                branch = line.substring(2);
 
+            }
+            System.out.println(branch);
+//            System.out.println("Hi");
+        }
+        catch (Exception e) {
+            System.out.println("H");
+        }
     }
+
 }
