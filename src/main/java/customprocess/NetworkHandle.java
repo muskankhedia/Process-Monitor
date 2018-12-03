@@ -251,7 +251,7 @@ public class NetworkHandle {
         String ll = "", sentence="", next="";
         String headers[] = {"Program", "Sent", "Received"};
         ll = br.readLine();
-        List<Object> processObjects = new ArrayList<Object>();
+
         Map<String, String> line = new LinkedHashMap<String, String>();
         if(ll == null){
             System.out.println("No internet Connection");
@@ -260,6 +260,7 @@ public class NetworkHandle {
             while(true){
                 ll = br.readLine();
                 if(ll.equals("Refreshing:")) {
+                    List<Object> processObjects = new ArrayList<Object>();
                     while(true){
                         ll = br.readLine();
                         if(ll.equals("")) {
@@ -267,12 +268,14 @@ public class NetworkHandle {
                         }
                         sentence = ll;
                         String[] process_details = sentence.split("\t");
-                        if (process_details.length == 3)
+                        line.clear();
+                        if (process_details.length == 3) {
                             for (int k = 0; k < 3; k++)
                                 line.put(headers[k].trim(), process_details[k].trim());
+                        }
                         processObjects.add(line);
-                        System.out.println(processObjects);
                     }
+                    System.out.println(processObjects);
                 }
             }
         }
