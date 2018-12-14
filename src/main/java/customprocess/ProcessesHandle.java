@@ -1,6 +1,5 @@
 package customprocess;
 
-import org.hyperic.sigar.Sigar;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,7 +8,6 @@ import java.util.*;
 
 public class ProcessesHandle {
 
-    private Sigar sigarObs;
     private String processLine;
     private String processLineAll;
     private String separator;

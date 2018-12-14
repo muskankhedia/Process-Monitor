@@ -1,5 +1,4 @@
 import org.dizitart.no2.Nitrite;
-import org.hyperic.sigar.Sigar;
 
 import java.io.*;
 

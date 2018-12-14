@@ -1,9 +1,5 @@
 package customprocess;
 
-import org.hyperic.sigar.NetInterfaceConfig;
-import org.hyperic.sigar.NetInterfaceStat;
-import org.hyperic.sigar.Sigar;
-import org.hyperic.sigar.SigarException;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -11,9 +7,6 @@ import java.io.InputStreamReader;
 import java.util.*;
 
 public class NetworkHandle {
-    private Sigar sigar;
-    private NetInterfaceStat networkStats;
-    private NetInterfaceConfig networkConfig;
     private List<String> networkCardsList;
     private List<Object> networkStatsList;
     private long networkSpeed;
@@ -21,18 +14,17 @@ public class NetworkHandle {
     private String separator="%%%";
 
     NetworkHandle() {
-        this.sigar = new Sigar();
         this.networkCardsList = new ArrayList<String>();
     }
 
-    public List<String> getNetworkCards() throws SigarException {
+    /*public List<String> getNetworkCards() throws SigarException {
         for (String name: this.sigar.getNetInterfaceList()) {
             this.networkCardsList.add(name);
             System.out.println("X");
         }
         return this.networkCardsList;
-    }
-
+    }*/
+/*
     public List<Object> getNetworkCardsStats() throws SigarException {
         for (String name: this.sigar.getNetInterfaceList()) {
 
@@ -52,7 +44,7 @@ public class NetworkHandle {
         }
         return this.networkSpeedListCollection;
     }
-
+*/
     public List<Object> netstatPID(String pid) throws IOException {
         Process netstats = Runtime.getRuntime().exec("netstat -tanp | grep "+(pid));
         Scanner SS = new Scanner(netstats.getInputStream());
@@ -284,9 +276,7 @@ public class NetworkHandle {
     }
 
 
-    public void runFunctionalities() throws SigarException {
-        this.getNetworkCards();
-        this.getNetworkCardsStats();
+    public void runFunctionalities(){
     }
 
 
