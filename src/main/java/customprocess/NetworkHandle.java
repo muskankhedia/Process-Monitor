@@ -1,6 +1,5 @@
 package customprocess;
 
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -13,38 +12,10 @@ public class NetworkHandle {
     private Map<String, Long> networkSpeedListCollection;
     private String separator="%%%";
 
-    NetworkHandle() {
+    public NetworkHandle() {
         this.networkCardsList = new ArrayList<String>();
     }
 
-    /*public List<String> getNetworkCards() throws SigarException {
-        for (String name: this.sigar.getNetInterfaceList()) {
-            this.networkCardsList.add(name);
-            System.out.println("X");
-        }
-        return this.networkCardsList;
-    }*/
-/*
-    public List<Object> getNetworkCardsStats() throws SigarException {
-        for (String name: this.sigar.getNetInterfaceList()) {
-
-            this.networkStatsList.add(this.sigar.getNetInterfaceStat(name));
-        }
-        return this.networkStatsList;
-    }
-
-    public long getNetworkCardSpeed(String cardName) throws SigarException {
-        this.networkSpeed = this.sigar.getNetInterfaceStat(cardName).getSpeed();
-        return this.sigar.getNetInterfaceStat(cardName).getSpeed();
-    }
-
-    public Map<String, Long> getAllNetworkSpeeds() throws SigarException {
-        for (String name: this.sigar.getNetInterfaceList()) {
-            this.networkSpeedListCollection.put(name, this.sigar.getNetInterfaceStat(name).getSpeed());
-        }
-        return this.networkSpeedListCollection;
-    }
-*/
     public List<Object> netstatPID(String pid) throws IOException {
         Process netstats = Runtime.getRuntime().exec("netstat -tanp | grep "+(pid));
         Scanner SS = new Scanner(netstats.getInputStream());
@@ -145,98 +116,6 @@ public class NetworkHandle {
         return processObjects;
     }
 
-//    public void networkActivityMonitoring() throws IOException {
-//        /**
-//         * disable root permissions in nethogs, type the following
-//         * sudo setcap "cap_net_admin,cap_net_raw=ep" /usr/sbin/nethogs
-//         */
-//        final Process pcc = Runtime.getRuntime().exec("nethogs -t");
-//        BufferedReader br = new BufferedReader(new InputStreamReader(pcc.getInputStream()));
-//        String ll = "", sentence="";
-//        String aa[];
-//        Timer timer = new Timer();
-//        boolean exit = false;
-//        int c=10100;
-//        ll = br.readLine();
-//        String headers[] = {"Program", "Sent", "Received"};
-//        List<Object> processObjects = new ArrayList<Object>();
-//        if(ll == null){
-//            System.out.println("Hii");
-//        }
-//        else {
-////            while (true) {
-////                ll = br.readLine().trim();
-////                sentence = ll;
-////                System.out.print(sentence);
-////                if(sentence.equals("Refreshing:")){
-////                    System.out.println("asdsf");
-////                }
-////                aa = sentence.split("%%%%%%");
-////                if (aa.length >= 2) {
-////                    sentence = "";
-////                    while (true) {
-////                        ll = br.readLine();
-////                        sentence += ll + this.separator;
-////                        aa = sentence.split("%%%%%%");
-////                        if (aa.length >= 2) {
-////                            Map<String, String> line = new LinkedHashMap<String, String>();
-////                            String[] b_process = aa[0].split("%%%");
-////                            for (int j = 1; j < b_process.length; j++) {
-////                                String[] c_process = b_process[j].split("\t");
-////                                if (c_process.length == 3)
-////                                    for (int k = 0; k < 3; k++)
-////                                        line.put(headers[k].trim(), c_process[k].trim());
-////                                processObjects.add(line);
-////                                System.out.println(processObjects);
-////                                break;
-////                            }
-////
-////                        }
-////                    }
-//                while(ll == "Refreshing:"){
-//                    ll = br.readLine().trim();
-//                    System.out.println(ll);
-//
-//                    if(ll.equals("")){
-//                        break;
-//                    }
-//                    else{
-//                        sentence += ll + this.separator;
-//                        System.out.println(sentence);
-//                    }
-//
-//                }
-////                sentence += ll + this.separator;
-////                String[] aa = sentence.split("%%%%%%");
-////                if (aa.length == 10)
-////                    break;
-//
-////                System.out.println(sentence);
-////                List<Object> processObjects = new ArrayList<Object>();
-////                String[] newProcess = sentence.split("%%%%%%");
-////                String headers[] = {"Program", "Sent", "Received"};
-////                for (int i = 1; i < newProcess.length; i++) {
-////                    Map<String, String> line = new LinkedHashMap<String, String>();
-////                    String[] b_process = newProcess[i].split("%%%");
-////                    for (int j = 1; j < b_process.length; j++) {
-////                        String[] c_process = b_process[j].split("\t");
-////                        if (c_process.length == 3)
-////                            for (int k = 0; k < 3; k++)
-////                                line.put(headers[k].trim(), c_process[k].trim());
-////                        processObjects.add(line);
-////                        System.out.println(processObjects);
-////                    }
-////                    //System.out.println(processObjects);
-////
-////                }
-//                }
-//            }
-//
-////        System.out.println(processObjects);
-//        }
-//        pcc.destroy();
-//    }
-
     public void networkActivityMonitoring() throws IOException{
         final Process pcc = Runtime.getRuntime().exec("nethogs -t");
         BufferedReader br = new BufferedReader(new InputStreamReader(pcc.getInputStream()));
@@ -274,12 +153,6 @@ public class NetworkHandle {
             }
         }
     }
-
-
-    public void runFunctionalities(){
-    }
-
-
 
     public static void main(String[] args) throws IOException {
         System.out.println(new NetworkHandle().netstatALL());

@@ -1,6 +1,4 @@
 package customprocess;
-
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,14 +12,14 @@ public class ProcessesHandle {
     public String[] processCurrentArray;
     public List<List<String>> processCurrentTrimmed;
     public List<Integer> pidLists;
-    private String processDetails;
+//    private String processDetails;
     public String[] processDetailsArray;
     public List processDetailsArrayAll;
     private String processDetailsAll;
     public List processDetailsArrayAllStringified;
     public List<Map<String, String>> psDetailMap;
 
-    ProcessesHandle() {
+    public ProcessesHandle() {
         this.separator = "%%%";
         this.processCurrentTrimmed = new ArrayList<List<String>>();
         this.pidLists = new ArrayList<Integer>();
@@ -43,7 +41,7 @@ public class ProcessesHandle {
                     } else if (count==2 && i==0) {
                         pidLists.add(1);
                     }
-                } catch (Exception n) {;}
+                } catch (Exception n) {}
                 String a = j.trim();
                 if (!a.trim().equals(""))
                     pure.add(a);
@@ -184,4 +182,3 @@ public class ProcessesHandle {
         this.getAllCurrentProcesses();
     }
 }
-
