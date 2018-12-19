@@ -1,5 +1,7 @@
 package customprocess;
 
+import sun.nio.ch.Net;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -154,9 +156,15 @@ public class NetworkHandle {
         }
     }
 
-    public static void main(String[] args) throws IOException {
+    public boolean runTests() throws IOException {
         System.out.println(new NetworkHandle().netstatALL());
-        NetworkHandle obj = new NetworkHandle();
-         obj.networkActivityMonitoring();
+        System.out.println(new NetworkHandle().netstatPID("1"));
+        return true;
     }
+
+//    public static void main(String[] args) throws IOException {
+//        System.out.println(new NetworkHandle().netstatALL());
+//        NetworkHandle obj = new NetworkHandle();
+//         obj.networkActivityMonitoring();
+//    }
 }
