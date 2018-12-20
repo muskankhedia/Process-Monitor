@@ -1,22 +1,25 @@
-
-import javax.swing.*;
-import java.io.*;
+import customprocess.ProcessesHandle;
+import customprocess.NetworkHandle;
+import java.io.IOException;
 
 public class Core {
-    public static void main(String[] args) {
-        JFrame Main = new JFrame();
-        JLabel welcome = new JLabel();
-        welcome.setText("Hi");
-        welcome.setHorizontalAlignment(SwingConstants.CENTER);
-        welcome.setVerticalAlignment(SwingConstants.CENTER);
-        welcome.setSize(50, 50);
-        JButton next = new JButton();
-        next.setText("Next");
-        next.setBounds(50, 50, 30, 30);
-        Main.add(welcome);
-        Main.add(next);
-        Main.setSize(300, 200);
-        Main.setLayout(null);
-        Main.setVisible(true);
+
+    private static void manualTestCases() throws IOException, NullPointerException {
+        ProcessesHandle processHandler = new ProcessesHandle();
+        boolean resultProc = processHandler.runTests();
+
+        NetworkHandle netw = new NetworkHandle();
+        boolean resultNetwork = netw.runTests();
+
+        if ( resultNetwork && resultProc) {
+            System.out.println("Test cases passed");
+        } else {
+            System.err.println("Error encountered in manual test cases");
+        }
+
+    }
+
+    public static void main(String[] args) throws IOException {
+        manualTestCases();
     }
 }

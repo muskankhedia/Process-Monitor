@@ -181,4 +181,9 @@ public class ProcessesHandle {
     public void runFunctionalities() throws IOException, NullPointerException, NumberFormatException {
         this.getAllCurrentProcesses();
     }
+
+    public boolean runTests() throws IOException, NullPointerException, NumberFormatException {
+        this.getAllCurrentProcesses();
+        return true;
+    }
 }

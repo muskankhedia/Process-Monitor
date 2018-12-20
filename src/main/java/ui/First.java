@@ -19,7 +19,6 @@ import javax.swing.*;
         next.setBackground(Color.BLUE);
         next.setForeground(Color.WHITE);
         next.addActionListener(new ActionListener(){
-        
             public void actionPerformed(ActionEvent e) {
                 if (next.isEnabled()) {
                     JOptionPane.showMessageDialog(null, "Next button clicked");
