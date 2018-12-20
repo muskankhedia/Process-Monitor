@@ -1,5 +1,5 @@
-import customprocess.*;
-
+import customprocess.ProcessesHandle;
+import customprocess.NetworkHandle;
 import java.io.IOException;
 
 public class Core {
