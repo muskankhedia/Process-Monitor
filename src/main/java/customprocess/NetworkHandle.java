@@ -162,9 +162,9 @@ public class NetworkHandle {
         return true;
     }
 
-//    public static void main(String[] args) throws IOException {
-//        System.out.println(new NetworkHandle().netstatALL());
-//        NetworkHandle obj = new NetworkHandle();
-//         obj.networkActivityMonitoring();
-//    }
+    public static void main(String[] args) throws IOException {
+        System.out.println(new NetworkHandle().netstatALL());
+        NetworkHandle obj = new NetworkHandle();
+         obj.networkActivityMonitoring();
+    }
 }
